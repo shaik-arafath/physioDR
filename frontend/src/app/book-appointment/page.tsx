@@ -50,11 +50,31 @@ export default function BookAppointment() {
     "6:00 PM", "6:30 PM", "7:00 PM", "7:30 PM"
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In production, this would send data to the backend API
-    console.log("Booking submitted:", formData);
-    setSubmitted(true);
+    try {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
+      const response = await fetch(`${apiUrl}/api/bookings`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          status: 'pending',
+          createdAt: new Date().toISOString()
+        }),
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        alert('Failed to submit booking. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error submitting booking:', error);
+      alert('Failed to submit booking. Please try again.');
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
