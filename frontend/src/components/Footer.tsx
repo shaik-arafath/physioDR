@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* About */}
           <div>
-            <h3 className="text-xl font-bold mb-4 text-primary-400">PhysioDR</h3>
+            <img src="/logo.jpg" alt="PhysioDR" className="h-16 w-auto mb-4" />
             <p className="text-gray-400 mb-4">
               Your trusted partner in physiotherapy care. We help you recover, rehabilitate, and regain your quality of life.
             </p>

@@ -24,8 +24,8 @@ export default function Header() {
     <header className="bg-white shadow-md sticky top-0 z-50">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between py-4">
-          <Link href="/" className="text-2xl font-bold text-primary-600">
-            PhysioDR
+          <Link href="/" className="flex items-center">
+            <img src="/logo.jpg" alt="PhysioDR" className="h-12 w-auto" />
           </Link>
           
           {/* Desktop Navigation */}
