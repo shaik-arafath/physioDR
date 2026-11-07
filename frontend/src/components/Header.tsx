@@ -59,13 +59,13 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <nav className="lg:hidden py-4 border-t">
+          <nav className="lg:hidden py-4 border-t animate-in slide-in-from-top duration-200">
             <div className="flex flex-col space-y-3">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-gray-700 hover:text-primary-600 transition-colors font-medium"
+                  className="text-gray-700 hover:text-primary-600 transition-colors font-medium py-2 px-4 rounded-lg hover:bg-gray-100"
                   onClick={() => setIsOpen(false)}
                 >
                   {link.label}
@@ -73,7 +73,7 @@ export default function Header() {
               ))}
               <Link
                 href="/book-appointment"
-                className="btn-primary text-center"
+                className="btn-primary text-center mt-4"
                 onClick={() => setIsOpen(false)}
               >
                 Book Now
