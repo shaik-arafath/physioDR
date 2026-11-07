@@ -1,30 +1,94 @@
 "use client";
 
-import { useState } from "react";
-import { Users, Calendar, Settings, LogOut, Plus, Edit, Trash2 } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Users, Calendar, Settings, LogOut, Plus, Edit, Trash2, Image as ImageIcon, Check, X } from "lucide-react";
 
 export default function AdminPanel() {
   const [activeTab, setActiveTab] = useState("dashboard");
+  const [bookings, setBookings] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [promotionalImages, setPromotionalImages] = useState<string[]>([]);
 
   const tabs = [
     { id: "dashboard", label: "Dashboard", icon: Calendar },
     { id: "doctors", label: "Doctors", icon: Users },
     { id: "services", label: "Services", icon: Settings },
     { id: "bookings", label: "Bookings", icon: Calendar },
+    { id: "promotions", label: "Promotions", icon: ImageIcon },
   ];
 
-  const bookings = [
-    { id: 1, name: "Rahul Sharma", service: "Back Pain Relief", doctor: "Dr. Rajesh Kumar", date: "2024-10-30", time: "10:00 AM", status: "Confirmed" },
-    { id: 2, name: "Priya Patel", service: "Neck Pain Treatment", doctor: "Dr. Priya Sharma", date: "2024-10-30", time: "11:30 AM", status: "Pending" },
-    { id: 3, name: "Amit Kumar", service: "Sports Injury Rehab", doctor: "Dr. Amit Patel", date: "2024-10-31", time: "2:00 PM", status: "Confirmed" },
-  ];
+  useEffect(() => {
+    fetchBookings();
+  }, []);
+
+  const fetchBookings = async () => {
+    try {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
+      const response = await fetch(`${apiUrl}/api/bookings`);
+      if (response.ok) {
+        const data = await response.json();
+        setBookings(data);
+      }
+    } catch (error) {
+      console.error('Error fetching bookings:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const updateBookingStatus = async (id: number, status: string) => {
+    try {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
+      const response = await fetch(`${apiUrl}/api/bookings/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status }),
+      });
+      if (response.ok) {
+        fetchBookings();
+      }
+    } catch (error) {
+      console.error('Error updating booking:', error);
+    }
+  };
+
+  const deleteBooking = async (id: number) => {
+    if (confirm('Are you sure you want to delete this booking?')) {
+      try {
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
+        const response = await fetch(`${apiUrl}/api/bookings/${id}`, {
+          method: 'DELETE',
+        });
+        if (response.ok) {
+          fetchBookings();
+        }
+      } catch (error) {
+        console.error('Error deleting booking:', error);
+      }
+    }
+  };
+
+  const addPromotionalImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPromotionalImages([...promotionalImages, reader.result as string]);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const removePromotionalImage = (index: number) => {
+    setPromotionalImages(promotionalImages.filter((_, i) => i !== index));
+  };
 
   return (
     <div className="min-h-screen bg-gray-100">
       {/* Header */}
       <header className="bg-white shadow-md">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-primary-600">PhysioDR Admin</h1>
+          <h1 className="text-2xl font-bold text-primary-600">Sai Ranyata Admin</h1>
           <button className="flex items-center text-gray-600 hover:text-gray-900">
             <LogOut className="w-5 h-5 mr-2" />
             Logout
@@ -61,19 +125,19 @@ export default function AdminPanel() {
               <div className="grid md:grid-cols-4 gap-6 mb-8">
                 <div className="bg-white rounded-lg shadow p-6">
                   <h3 className="text-gray-600 mb-2">Total Bookings</h3>
-                  <p className="text-3xl font-bold text-primary-600">156</p>
+                  <p className="text-3xl font-bold text-primary-600">{bookings.length}</p>
                 </div>
                 <div className="bg-white rounded-lg shadow p-6">
-                  <h3 className="text-gray-600 mb-2">Today's Appointments</h3>
-                  <p className="text-3xl font-bold text-secondary-600">12</p>
+                  <h3 className="text-gray-600 mb-2">Confirmed</h3>
+                  <p className="text-3xl font-bold text-green-600">{bookings.filter(b => b.status === 'Confirmed').length}</p>
                 </div>
                 <div className="bg-white rounded-lg shadow p-6">
-                  <h3 className="text-gray-600 mb-2">Active Doctors</h3>
-                  <p className="text-3xl font-bold text-primary-600">6</p>
+                  <h3 className="text-gray-600 mb-2">Pending</h3>
+                  <p className="text-3xl font-bold text-orange-600">{bookings.filter(b => b.status === 'Pending').length}</p>
                 </div>
                 <div className="bg-white rounded-lg shadow p-6">
-                  <h3 className="text-gray-600 mb-2">Pending Requests</h3>
-                  <p className="text-3xl font-bold text-orange-600">3</p>
+                  <h3 className="text-gray-600 mb-2">Promotional Images</h3>
+                  <p className="text-3xl font-bold text-secondary-600">{promotionalImages.length}</p>
                 </div>
               </div>
             </div>
@@ -83,50 +147,85 @@ export default function AdminPanel() {
             <div>
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-2xl font-bold">Bookings</h2>
-                <button className="btn-primary flex items-center">
+                <button onClick={fetchBookings} className="btn-primary flex items-center">
                   <Plus className="w-5 h-5 mr-2" />
-                  Add Booking
+                  Refresh
                 </button>
               </div>
-              <div className="bg-white rounded-lg shadow overflow-hidden">
-                <table className="w-full">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Patient</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Service</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Doctor</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date & Time</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-200">
-                    {bookings.map((booking) => (
-                      <tr key={booking.id}>
-                        <td className="px-6 py-4 whitespace-nowrap">{booking.name}</td>
-                        <td className="px-6 py-4 whitespace-nowrap">{booking.service}</td>
-                        <td className="px-6 py-4 whitespace-nowrap">{booking.doctor}</td>
-                        <td className="px-6 py-4 whitespace-nowrap">{booking.date} at {booking.time}</td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <span className={`px-2 py-1 rounded-full text-xs ${
-                            booking.status === "Confirmed" ? "bg-green-100 text-green-800" : "bg-yellow-100 text-yellow-800"
-                          }`}>
-                            {booking.status}
-                          </span>
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <button className="text-primary-600 hover:text-primary-900 mr-3">
-                            <Edit className="w-5 h-5" />
-                          </button>
-                          <button className="text-red-600 hover:text-red-900">
-                            <Trash2 className="w-5 h-5" />
-                          </button>
-                        </td>
+              {loading ? (
+                <p className="text-gray-600">Loading bookings...</p>
+              ) : (
+                <div className="bg-white rounded-lg shadow overflow-hidden">
+                  <table className="w-full">
+                    <thead className="bg-gray-50">
+                      <tr>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Patient</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Phone</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Service</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Doctor</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date & Time</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                    </thead>
+                    <tbody className="divide-y divide-gray-200">
+                      {bookings.map((booking) => (
+                        <tr key={booking.id}>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <div>
+                              <div className="font-medium">{booking.name}</div>
+                              <div className="text-sm text-gray-500">Age: {booking.age}</div>
+                            </div>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">{booking.phone}</td>
+                          <td className="px-6 py-4 whitespace-nowrap">{booking.service}</td>
+                          <td className="px-6 py-4 whitespace-nowrap">{booking.doctor}</td>
+                          <td className="px-6 py-4 whitespace-nowrap">{booking.date} at {booking.time}</td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <span className={`px-2 py-1 rounded-full text-xs ${
+                              booking.status === "Confirmed" ? "bg-green-100 text-green-800" :
+                              booking.status === "Rejected" ? "bg-red-100 text-red-800" :
+                              "bg-yellow-100 text-yellow-800"
+                            }`}>
+                              {booking.status}
+                            </span>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            {booking.status === "Pending" && (
+                              <>
+                                <button
+                                  onClick={() => updateBookingStatus(booking.id, "Confirmed")}
+                                  className="text-green-600 hover:text-green-900 mr-3"
+                                  title="Accept"
+                                >
+                                  <Check className="w-5 h-5" />
+                                </button>
+                                <button
+                                  onClick={() => updateBookingStatus(booking.id, "Rejected")}
+                                  className="text-red-600 hover:text-red-900 mr-3"
+                                  title="Reject"
+                                >
+                                  <X className="w-5 h-5" />
+                                </button>
+                              </>
+                            )}
+                            <button
+                              onClick={() => deleteBooking(booking.id)}
+                              className="text-red-600 hover:text-red-900"
+                              title="Delete"
+                            >
+                              <Trash2 className="w-5 h-5" />
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                  {bookings.length === 0 && (
+                    <div className="p-6 text-center text-gray-500">No bookings found</div>
+                  )}
+                </div>
+              )}
             </div>
           )}
 
@@ -156,6 +255,44 @@ export default function AdminPanel() {
               </div>
               <div className="bg-white rounded-lg shadow p-6">
                 <p className="text-gray-600">Service management interface would go here.</p>
+              </div>
+            </div>
+          )}
+
+          {activeTab === "promotions" && (
+            <div>
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-2xl font-bold">Promotional Images</h2>
+                <label className="btn-primary flex items-center cursor-pointer">
+                  <Plus className="w-5 h-5 mr-2" />
+                  Add Image
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={addPromotionalImage}
+                    className="hidden"
+                  />
+                </label>
+              </div>
+              <div className="grid md:grid-cols-3 gap-6">
+                {promotionalImages.map((image, index) => (
+                  <div key={index} className="bg-white rounded-lg shadow overflow-hidden">
+                    <img src={image} alt={`Promotional ${index + 1}`} className="w-full h-48 object-cover" />
+                    <div className="p-4 flex justify-end">
+                      <button
+                        onClick={() => removePromotionalImage(index)}
+                        className="text-red-600 hover:text-red-900"
+                      >
+                        <Trash2 className="w-5 h-5" />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+                {promotionalImages.length === 0 && (
+                  <div className="col-span-3 bg-white rounded-lg shadow p-12 text-center text-gray-500">
+                    No promotional images added yet
+                  </div>
+                )}
               </div>
             </div>
           )}

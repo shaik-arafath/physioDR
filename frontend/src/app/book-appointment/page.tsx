@@ -34,12 +34,8 @@ export default function BookAppointment() {
   ];
 
   const doctors = [
-    "Dr. Rajesh Kumar",
-    "Dr. Priya Sharma",
-    "Dr. Amit Patel",
-    "Dr. Neha Gupta",
-    "Dr. Vikram Singh",
-    "Dr. Anjali Verma"
+    "Dr. L.V. Siva Reddy",
+    "Dr. Shaik Anwar"
   ];
 
   const timeSlots = [
@@ -89,23 +85,29 @@ export default function BookAppointment() {
       <div className="min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50 flex items-center justify-center py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto text-center card">
-            <div className="bg-secondary-100 rounded-full p-6 w-24 h-24 mx-auto mb-6 flex items-center justify-center">
-              <CheckCircle className="w-12 h-12 text-secondary-600" />
+            <div className="bg-yellow-100 rounded-full p-6 w-24 h-24 mx-auto mb-6 flex items-center justify-center">
+              <Clock className="w-12 h-12 text-yellow-600" />
             </div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-4">Booking Confirmed!</h1>
+            <h1 className="text-3xl font-bold text-gray-900 mb-4">Booking Submitted!</h1>
             <p className="text-lg text-gray-700 mb-6">
-              Thank you for booking an appointment with PhysioDR. We have received your request and will send a confirmation to your email and phone shortly.
+              Thank you for booking an appointment with Sai Ranyata Physiotherapy. Your booking is <strong>Pending</strong> and will be reviewed by our team. You will receive a confirmation once your appointment is approved.
             </p>
             <div className="bg-gray-50 rounded-lg p-6 text-left mb-6">
               <h3 className="font-bold mb-4">Booking Details:</h3>
               <p><strong>Name:</strong> {formData.name}</p>
+              <p><strong>Phone:</strong> {formData.phone}</p>
               <p><strong>Date:</strong> {formData.date}</p>
               <p><strong>Time:</strong> {formData.time}</p>
               <p><strong>Doctor:</strong> {formData.doctor}</p>
               <p><strong>Service:</strong> {formData.service}</p>
+              <div className="mt-4 pt-4 border-t">
+                <span className="inline-block px-3 py-1 rounded-full text-sm font-semibold bg-yellow-100 text-yellow-800">
+                  Status: Pending Approval
+                </span>
+              </div>
             </div>
             <p className="text-gray-600 mb-6">
-              Please arrive 15 minutes before your appointment time. If you need to reschedule, please call us at least 24 hours in advance.
+              We will contact you shortly to confirm your appointment. For urgent queries, please call us at +91 97007 19727.
             </p>
             <button
               onClick={() => setSubmitted(false)}
