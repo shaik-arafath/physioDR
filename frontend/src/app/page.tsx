@@ -3,18 +3,18 @@ import { Calendar, Clock, Users, Award, Star, Phone } from "lucide-react";
 
 export default function Home() {
   const services = [
-    { name: "Back Pain Relief", icon: "🔙", description: "Specialized treatment for chronic and acute back pain" },
-    { name: "Neck Pain Treatment", icon: "🦒", description: "Effective therapy for neck stiffness and pain" },
-    { name: "Sports Injury Rehab", icon: "⚽", description: "Comprehensive recovery for athletes" },
-    { name: "Post-Surgery Rehab", icon: "🏥", description: "Guided rehabilitation after surgery" },
-    { name: "Stroke Rehabilitation", icon: "🧠", description: "Specialized care for stroke recovery" },
-    { name: "Pediatric Physiotherapy", icon: "👶", description: "Gentle therapy for children" },
+    { name: "Back Pain Relief", image: "/service-back.jpg", description: "Specialized treatment for chronic and acute back pain" },
+    { name: "Neck Pain Treatment", image: "/service-neck1.jpg", description: "Effective therapy for neck stiffness and pain" },
+    { name: "Sports Injury Rehab", image: "/service-sports.jpg", description: "Comprehensive recovery for athletes" },
+    { name: "Post-Surgery Rehab", image: "/service-knee2.jpg", description: "Guided rehabilitation after surgery" },
+    { name: "Stroke Rehabilitation", image: "/service-stroke.jpg", description: "Specialized care for stroke recovery" },
+    { name: "Pediatric Physiotherapy", image: "/service-pediatric.jpg", description: "Gentle therapy for children" },
   ];
 
   const reviews = [
-    { name: "Rahul Sharma", rating: 5, text: "Excellent care and professional staff. My back pain is completely gone!" },
-    { name: "Priya Patel", rating: 5, text: "The doctors here are very knowledgeable and caring. Highly recommended." },
-    { name: "Amit Kumar", rating: 5, text: "Best physiotherapy clinic in the area. Modern equipment and great results." },
+    { name: "Alekhya", rating: 5, text: "I had severe cervical spondylitis. Neurosurgeon suggested surgery. After 20 sittings with Dr. Siva Reddy, I am completely free from pain." },
+    { name: "Dinesh", rating: 5, text: "I visited for PCL injury treatment. Doctor explained patiently about my problem. Within 2-3 weeks I was able to walk normally." },
+    { name: "Anuradha KP", rating: 5, text: "I joined for knee joint pain. After one week I found a lot of difference. After three weeks of treatment, I got relieved of my pain." },
   ];
 
   return (
@@ -51,7 +51,7 @@ export default function Home() {
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="section-title">About Our Clinic</h2>
             <p className="text-lg text-gray-700 leading-relaxed">
-              At PhysioDR, we are dedicated to helping patients recover from injuries, manage chronic pain, and improve their overall quality of life through evidence-based physiotherapy treatments. Our team of experienced physiotherapists uses modern equipment and personalized care plans to ensure the best outcomes for every patient.
+              At Sai Ranyata Physiotherapy & Chiropractor Clinic, we are dedicated to helping patients recover from injuries, manage chronic pain, and improve their overall quality of life through evidence-based physiotherapy treatments. Our team of experienced physiotherapists uses modern equipment and personalized care plans to ensure the best outcomes for every patient.
             </p>
           </div>
         </div>
@@ -64,7 +64,11 @@ export default function Home() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service, index) => (
               <div key={index} className="card">
-                <div className="text-4xl mb-4">{service.icon}</div>
+                <img
+                  src={service.image}
+                  alt={service.name}
+                  className="w-full h-48 object-cover rounded-lg mb-4"
+                />
                 <h3 className="text-xl font-semibold mb-2">{service.name}</h3>
                 <p className="text-gray-600">{service.description}</p>
               </div>
@@ -87,8 +91,8 @@ export default function Home() {
               <div className="bg-primary-100 rounded-full p-6 w-24 h-24 mx-auto mb-4 flex items-center justify-center">
                 <Award className="w-12 h-12 text-primary-600" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">15+ Years Experience</h3>
-              <p className="text-gray-600">Our team has decades of combined experience in physiotherapy</p>
+              <h3 className="text-xl font-semibold mb-2">19+ Years Experience</h3>
+              <p className="text-gray-600">Dr. L.V. Siva Reddy has 19 years of experience in physiotherapy</p>
             </div>
             <div className="text-center">
               <div className="bg-secondary-100 rounded-full p-6 w-24 h-24 mx-auto mb-4 flex items-center justify-center">
@@ -135,27 +139,19 @@ export default function Home() {
           <div className="max-w-2xl mx-auto bg-white/10 rounded-xl p-6 backdrop-blur">
             <div className="grid md:grid-cols-2 gap-4 text-left">
               <div>
-                <p className="font-semibold mb-2">Monday - Friday</p>
-                <p>9:00 AM - 8:00 PM</p>
-              </div>
-              <div>
-                <p className="font-semibold mb-2">Saturday</p>
-                <p>9:00 AM - 6:00 PM</p>
+                <p className="font-semibold mb-2">Monday - Saturday</p>
+                <p>10:00 AM - 9:00 PM</p>
               </div>
               <div>
                 <p className="font-semibold mb-2">Sunday</p>
-                <p>10:00 AM - 2:00 PM</p>
-              </div>
-              <div>
-                <p className="font-semibold mb-2">Emergency</p>
-                <p>24/7 Available</p>
+                <p>10:00 AM - 1:00 PM</p>
               </div>
             </div>
           </div>
           <div className="mt-8">
-            <a href="tel:+919876543210" className="inline-block bg-white text-primary-600 font-semibold py-3 px-8 rounded-lg hover:bg-gray-100 transition-colors">
+            <a href="tel:+919700719727" className="inline-block bg-white text-primary-600 font-semibold py-3 px-8 rounded-lg hover:bg-gray-100 transition-colors">
               <Phone className="inline-block w-5 h-5 mr-2" />
-              Call: +91 98765 43210
+              Call: +91 97007 19727
             </a>
           </div>
         </div>
