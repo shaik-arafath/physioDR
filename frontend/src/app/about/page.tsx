@@ -18,17 +18,24 @@ export default function About() {
       {/* Story */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <h2 className="section-title text-center mb-8">Our Story</h2>
-            <p className="text-lg text-gray-700 leading-relaxed mb-6">
-              PhysioDR was founded in 2009 with a simple mission: to provide world-class physiotherapy care to our community. What started as a small clinic with one therapist has grown into a comprehensive rehabilitation center serving thousands of patients each year.
-            </p>
-            <p className="text-lg text-gray-700 leading-relaxed mb-6">
-              Over the years, we have expanded our services, invested in state-of-the-art equipment, and built a team of highly skilled physiotherapists who are passionate about helping patients recover and improve their quality of life.
-            </p>
-            <p className="text-lg text-gray-700 leading-relaxed">
-              Today, PhysioDR is recognized as a leading physiotherapy clinic in the region, known for our evidence-based treatments, compassionate care, and excellent patient outcomes.
-            </p>
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div>
+                <p className="text-lg text-gray-700 leading-relaxed mb-6">
+                  PhysioDR was founded in 2009 with a simple mission: to provide world-class physiotherapy care to our community. What started as a small clinic with one therapist has grown into a comprehensive rehabilitation center serving thousands of patients each year.
+                </p>
+                <p className="text-lg text-gray-700 leading-relaxed mb-6">
+                  Over the years, we have expanded our services, invested in state-of-the-art equipment, and built a team of highly skilled physiotherapists who are passionate about helping patients recover and improve their quality of life.
+                </p>
+                <p className="text-lg text-gray-700 leading-relaxed">
+                  Today, PhysioDR is recognized as a leading physiotherapy clinic in the region, known for our evidence-based treatments, compassionate care, and excellent patient outcomes.
+                </p>
+              </div>
+              <div>
+                <img src="/hosp6.jpeg" alt="Our Clinic" className="w-full h-auto rounded-lg shadow-lg" />
+              </div>
+            </div>
           </div>
         </div>
       </section>

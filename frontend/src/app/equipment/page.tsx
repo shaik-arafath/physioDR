@@ -90,18 +90,21 @@ export default function Equipment() {
           <h2 className="section-title text-center mb-12">Our Facilities</h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             <div className="card">
+              <img src="/hosp3.jpeg" alt="Treatment Room" className="w-full h-48 object-cover rounded-lg mb-4" />
               <h3 className="text-xl font-bold mb-3">Private Treatment Rooms</h3>
               <p className="text-gray-700">
                 Individual treatment rooms ensuring privacy and personalized care for each patient.
               </p>
             </div>
             <div className="card">
+              <img src="/hosp4.jpeg" alt="Exercise Gym" className="w-full h-48 object-cover rounded-lg mb-4" />
               <h3 className="text-xl font-bold mb-3">Modern Exercise Gym</h3>
               <p className="text-gray-700">
                 Fully equipped rehabilitation gym with the latest exercise machines and equipment.
               </p>
             </div>
             <div className="card">
+              <img src="/hosp5.jpeg" alt="Clinic Environment" className="w-full h-48 object-cover rounded-lg mb-4" />
               <h3 className="text-xl font-bold mb-3">Hygienic Environment</h3>
               <p className="text-gray-700">
                 Clean, sanitized, and comfortable environment following all hygiene protocols.

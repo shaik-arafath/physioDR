@@ -1,13 +1,11 @@
 export default function Gallery() {
   const galleryItems = [
-    { type: "photo", title: "Clinic Reception", description: "Modern and welcoming reception area" },
-    { type: "photo", title: "Treatment Room", description: "Private and well-equipped treatment rooms" },
-    { type: "photo", title: "Exercise Gym", description: "Fully equipped rehabilitation gym" },
-    { type: "photo", title: "Ultrasound Therapy", description: "Advanced ultrasound treatment in progress" },
-    { type: "photo", title: "Patient Recovery", description: "Patient showing great improvement" },
-    { type: "photo", title: "Team Meeting", description: "Our dedicated team of physiotherapists" },
-    { type: "video", title: "Back Pain Exercises", description: "Simple exercises for back pain relief" },
-    { type: "video", title: "Neck Stretches", description: "Daily neck stretches for office workers" },
+    { type: "photo", image: "/hosp2.jpeg", title: "Clinic Reception", description: "Modern and welcoming reception area" },
+    { type: "photo", image: "/hosp3.jpeg", title: "Treatment Room", description: "Private and well-equipped treatment rooms" },
+    { type: "photo", image: "/hosp4.jpeg", title: "Exercise Gym", description: "Fully equipped rehabilitation gym" },
+    { type: "photo", image: "/hosp5.jpeg", title: "Therapy Session", description: "Advanced therapy treatment in progress" },
+    { type: "photo", image: "/hosp6.jpeg", title: "Patient Care", description: "Dedicated patient care and attention" },
+    { type: "photo", image: "/hosp2.jpg", title: "Clinic Interior", description: "Modern clinic interior design" },
   ];
 
   return (
@@ -30,12 +28,12 @@ export default function Gallery() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {galleryItems.map((item, index) => (
               <div key={index} className="card">
-                <div className="aspect-video bg-gray-200 rounded-lg mb-4 flex items-center justify-center">
-                  {item.type === "photo" ? (
-                    <span className="text-6xl">📷</span>
-                  ) : (
-                    <span className="text-6xl">🎥</span>
-                  )}
+                <div className="aspect-video bg-gray-200 rounded-lg mb-4 overflow-hidden">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h3>
                 <p className="text-gray-600">{item.description}</p>

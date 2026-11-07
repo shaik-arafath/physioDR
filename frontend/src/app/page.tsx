@@ -20,12 +20,16 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary-50 to-secondary-50 py-20 md:py-32">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+      <section
+        className="relative py-20 md:py-32 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: 'url("/hero-bg.jpg")' }}
+      >
+        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="container mx-auto px-4 text-center relative z-10">
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
             Welcome to PhysioDR
           </h1>
-          <p className="text-xl md:text-2xl text-gray-700 mb-8 max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl text-white mb-8 max-w-3xl mx-auto">
             Your Path to Pain-Free Living Through Expert Physiotherapy Care
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

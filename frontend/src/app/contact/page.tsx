@@ -80,6 +80,11 @@ export default function Contact() {
             </div>
           </div>
 
+          {/* Clinic Image */}
+          <div className="card mb-12">
+            <img src="/hosp2.jpeg" alt="PhysioDR Clinic" className="w-full h-96 object-cover rounded-lg" />
+          </div>
+
           {/* Map */}
           <div className="card mb-12">
             <h2 className="text-2xl font-bold mb-4">Find Us on Google Maps</h2>
