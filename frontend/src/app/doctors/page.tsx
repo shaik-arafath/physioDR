@@ -5,12 +5,12 @@ export default function Doctors() {
   const doctors = [
     {
       id: 1,
-      name: "Dr. Rajesh Kumar",
+      name: "Dr. Siva Reddy",
       qualification: "BPTh, MPTh",
       experience: "15 years",
       specialty: "Orthopedic Physiotherapy",
       description: "Specializes in musculoskeletal disorders, sports injuries, and post-surgical rehabilitation.",
-      image: "👨‍⚕️"
+      image: "/doctor-siva.jpg"
     },
     {
       id: 2,
@@ -19,7 +19,7 @@ export default function Doctors() {
       experience: "12 years",
       specialty: "Neurological Physiotherapy",
       description: "Expert in stroke rehabilitation, paralysis care, and neurological conditions.",
-      image: "👩‍⚕️"
+      image: "/doctor-img-20240803.jpg"
     },
     {
       id: 3,
@@ -79,7 +79,15 @@ export default function Doctors() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {doctors.map((doctor) => (
               <div key={doctor.id} className="card">
-                <div className="text-6xl text-center mb-4">{doctor.image}</div>
+                {doctor.image.startsWith('/') ? (
+                  <img
+                    src={doctor.image}
+                    alt={doctor.name}
+                    className="w-full h-64 object-cover rounded-lg mb-4"
+                  />
+                ) : (
+                  <div className="text-6xl text-center mb-4">{doctor.image}</div>
+                )}
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">{doctor.name}</h3>
                 <div className="space-y-2 text-gray-600 mb-4">
                   <div className="flex items-center">
