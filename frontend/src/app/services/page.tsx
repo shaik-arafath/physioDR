@@ -8,7 +8,7 @@ export default function Services() {
       for: "Adults with chronic back pain, office workers, post-surgery patients",
       sessions: "6-12 sessions",
       fee: "₹800 per session",
-      icon: "🔙"
+      image: "/service-back.jpg"
     },
     {
       name: "Neck Pain Treatment",
@@ -16,7 +16,7 @@ export default function Services() {
       for: "Computer users, office workers, patients with cervical issues",
       sessions: "4-8 sessions",
       fee: "₹700 per session",
-      icon: "🦒"
+      image: "/service-neck1.jpg"
     },
     {
       name: "Knee Pain Therapy",
@@ -24,7 +24,7 @@ export default function Services() {
       for: "Elderly patients, athletes, post-surgery patients",
       sessions: "8-15 sessions",
       fee: "₹800 per session",
-      icon: "🦵"
+      image: "/service-knee1.jpg"
     },
     {
       name: "Sports Injury Rehab",
@@ -32,7 +32,7 @@ export default function Services() {
       for: "Athletes, sports enthusiasts, active individuals",
       sessions: "10-20 sessions",
       fee: "₹1000 per session",
-      icon: "⚽"
+      image: "/service-sports.jpg"
     },
     {
       name: "Post-Surgery Rehabilitation",
@@ -40,7 +40,7 @@ export default function Services() {
       for: "Post-surgery patients, joint replacement patients",
       sessions: "15-30 sessions",
       fee: "₹900 per session",
-      icon: "🏥"
+      image: "/service-knee2.jpg"
     },
     {
       name: "Stroke Rehabilitation",
@@ -48,7 +48,7 @@ export default function Services() {
       for: "Stroke patients, paralysis patients",
       sessions: "20-40 sessions",
       fee: "₹1000 per session",
-      icon: "🧠"
+      image: "/service-stroke.jpg"
     },
     {
       name: "Paralysis Care",
@@ -56,7 +56,7 @@ export default function Services() {
       for: "Paralysis patients, spinal cord injury patients",
       sessions: "30-60 sessions",
       fee: "₹1000 per session",
-      icon: "🏃"
+      image: "/service-neck2.jpg"
     },
     {
       name: "Pediatric Physiotherapy",
@@ -64,7 +64,7 @@ export default function Services() {
       for: "Children with developmental issues, cerebral palsy, delayed milestones",
       sessions: "10-30 sessions",
       fee: "₹600 per session",
-      icon: "👶"
+      image: "/service-pediatric.jpg"
     },
     {
       name: "Women's Health Physiotherapy",
@@ -72,7 +72,7 @@ export default function Services() {
       for: "Pregnant women, new mothers, women with pelvic issues",
       sessions: "6-12 sessions",
       fee: "₹800 per session",
-      icon: "👩"
+      image: "/service-womens.jpg"
     },
     {
       name: "Elderly Care",
@@ -80,7 +80,7 @@ export default function Services() {
       for: "Senior citizens, elderly with mobility issues",
       sessions: "8-15 sessions",
       fee: "₹700 per session",
-      icon: "👴"
+      image: "/service-elderly.jpg"
     },
     {
       name: "Shoulder Pain Treatment",
@@ -88,7 +88,7 @@ export default function Services() {
       for: "Adults with shoulder pain, overhead workers",
       sessions: "6-12 sessions",
       fee: "₹750 per session",
-      icon: "💪"
+      image: "/service-shoulder.jpg"
     },
     {
       name: "Neurological Rehabilitation",
@@ -96,7 +96,7 @@ export default function Services() {
       for: "Patients with neurological disorders",
       sessions: "15-30 sessions",
       fee: "₹1000 per session",
-      icon: "🧬"
+      image: "/service-neurological.jpg"
     },
   ];
 
@@ -120,7 +120,11 @@ export default function Services() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service, index) => (
               <div key={index} className="card">
-                <div className="text-5xl mb-4">{service.icon}</div>
+                <img
+                  src={service.image}
+                  alt={service.name}
+                  className="w-full h-48 object-cover rounded-lg mb-4"
+                />
                 <h3 className="text-xl font-bold text-gray-900 mb-3">{service.name}</h3>
                 <p className="text-gray-700 mb-4">{service.description}</p>
                 <div className="space-y-2 text-sm text-gray-600 border-t pt-4">
