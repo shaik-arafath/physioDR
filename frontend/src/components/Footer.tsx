@@ -8,9 +8,9 @@ export default function Footer() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* About */}
           <div>
-            <img src="/logo.jpg" alt="PhysioDR" className="h-16 w-auto mb-4" />
+            <img src="/logo.jpg" alt="Sai Ranyata" className="h-16 w-auto mb-4" />
             <p className="text-gray-400 mb-4">
-              Your trusted partner in physiotherapy care. We help you recover, rehabilitate, and regain your quality of life.
+              Sai Ranyata Physiotherapy & Chiropractor Clinic - Best Pain Management in Nizampet, Hyderabad.
             </p>
             <div className="flex space-x-4">
               <Facebook className="w-5 h-5 cursor-pointer hover:text-primary-400" />
@@ -38,15 +38,15 @@ export default function Footer() {
             <ul className="space-y-3 text-gray-400">
               <li className="flex items-start">
                 <MapPin className="w-5 h-5 mr-2 mt-1 flex-shrink-0" />
-                <span>123 Health Street, Medical District, City - 123456</span>
+                <span>SHOP NO 1&2, CELLAR BUILDING, Opp. Hanuman Temple, Bus Stop, Nizampet, Hyderabad, Telangana 500090</span>
               </li>
               <li className="flex items-center">
                 <Phone className="w-5 h-5 mr-2 flex-shrink-0" />
-                <span>+91 98765 43210</span>
+                <span>+91 97007 19727</span>
               </li>
               <li className="flex items-center">
                 <Mail className="w-5 h-5 mr-2 flex-shrink-0" />
-                <span>info@physiodr.com</span>
+                <span>info@sairanyata.com</span>
               </li>
             </ul>
           </div>
@@ -55,17 +55,16 @@ export default function Footer() {
           <div>
             <h3 className="text-xl font-bold mb-4 text-primary-400">Opening Hours</h3>
             <ul className="space-y-2 text-gray-400">
-              <li>Mon - Fri: 9:00 AM - 8:00 PM</li>
-              <li>Saturday: 9:00 AM - 6:00 PM</li>
-              <li>Sunday: 10:00 AM - 2:00 PM</li>
-              <li className="text-secondary-400 font-semibold">Emergency: 24/7</li>
+              <li>Mon - Sat: 10:00 AM - 8:00 PM</li>
+              <li>Sunday: Closed</li>
+              <li className="text-secondary-400 font-semibold">Best Pain Management in Nizampet</li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm">
-            © 2024 PhysioDR. All rights reserved.
+            © 2024 Sai Ranyata Physiotherapy & Chiropractor Clinic. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link href="/privacy-policy" className="text-gray-400 hover:text-white text-sm transition-colors">

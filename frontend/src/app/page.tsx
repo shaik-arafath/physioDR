@@ -27,17 +27,17 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="container mx-auto px-4 text-center relative z-10">
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-            Welcome to PhysioDR
+            Sai Ranyata Physiotherapy & Chiropractor Clinic
           </h1>
           <p className="text-xl md:text-2xl text-white mb-8 max-w-3xl mx-auto">
-            Your Path to Pain-Free Living Through Expert Physiotherapy Care
+            Best Pain Management in Nizampet, Hyderabad
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/book-appointment" className="btn-primary">
               <Calendar className="inline-block w-5 h-5 mr-2" />
               Book Appointment
             </Link>
-            <a href="tel:+919876543210" className="btn-secondary">
+            <a href="tel:+919700719727" className="btn-secondary">
               <Phone className="inline-block w-5 h-5 mr-2" />
               Call Now
             </a>

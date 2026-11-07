@@ -14,7 +14,7 @@ export default function Doctors() {
     },
     {
       id: 2,
-      name: "Dr. Priya Sharma",
+      name: "Dr. Shaik Anwar",
       qualification: "BPTh, MPTh",
       experience: "12 years",
       specialty: "Neurological Physiotherapy",

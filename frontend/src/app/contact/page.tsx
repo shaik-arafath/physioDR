@@ -49,34 +49,32 @@ export default function Contact() {
                 <Phone className="w-8 h-8 text-primary-600" />
               </div>
               <h3 className="font-bold mb-2">Phone</h3>
-              <p className="text-gray-600">+91 98765 43210</p>
-              <p className="text-gray-600">+91 98765 43211</p>
+              <p className="text-gray-600">+91 97007 19727</p>
             </div>
             <div className="card text-center">
               <div className="bg-secondary-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                 <Mail className="w-8 h-8 text-secondary-600" />
               </div>
               <h3 className="font-bold mb-2">Email</h3>
-              <p className="text-gray-600">info@physiodr.com</p>
-              <p className="text-gray-600">appointments@physiodr.com</p>
+              <p className="text-gray-600">info@sairanyata.com</p>
             </div>
             <div className="card text-center">
               <div className="bg-primary-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                 <MapPin className="w-8 h-8 text-primary-600" />
               </div>
               <h3 className="font-bold mb-2">Address</h3>
-              <p className="text-gray-600">123 Health Street</p>
-              <p className="text-gray-600">Medical District</p>
-              <p className="text-gray-600">City - 123456</p>
+              <p className="text-gray-600">SHOP NO 1&2, CELLAR BUILDING</p>
+              <p className="text-gray-600">Opp. Hanuman Temple, Bus Stop</p>
+              <p className="text-gray-600">Nizampet, Hyderabad</p>
+              <p className="text-gray-600">Telangana 500090</p>
             </div>
             <div className="card text-center">
               <div className="bg-secondary-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                 <Clock className="w-8 h-8 text-secondary-600" />
               </div>
               <h3 className="font-bold mb-2">Hours</h3>
-              <p className="text-gray-600">Mon-Fri: 9AM - 8PM</p>
-              <p className="text-gray-600">Sat: 9AM - 6PM</p>
-              <p className="text-gray-600">Sun: 10AM - 2PM</p>
+              <p className="text-gray-600">Mon-Sat: 10AM - 8PM</p>
+              <p className="text-gray-600">Sunday: Closed</p>
             </div>
           </div>
 
@@ -88,9 +86,25 @@ export default function Contact() {
           {/* Map */}
           <div className="card mb-12">
             <h2 className="text-2xl font-bold mb-4">Find Us on Google Maps</h2>
-            <div className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center">
-              <p className="text-gray-600">Google Map Embed Placeholder</p>
+            <div className="aspect-video bg-gray-200 rounded-lg overflow-hidden">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.123456789!2d78.123456789!3d17.123456789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDA3JzI0LjQiTiA3OMKwMDcnMjMuMCJF!5e0!3m2!1sen!2sin!4v1234567890"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
             </div>
+            <a
+              href="https://maps.app.goo.gl/Hp1TZnScVLbewshs9"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary inline-block mt-4"
+            >
+              Open in Google Maps
+            </a>
           </div>
 
           {/* Directions */}

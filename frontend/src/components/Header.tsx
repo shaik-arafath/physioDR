@@ -25,7 +25,7 @@ export default function Header() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between py-4">
           <Link href="/" className="flex items-center">
-            <img src="/logo.jpg" alt="PhysioDR" className="h-12 w-auto" />
+            <img src="/logo.jpg" alt="Sai Ranyata" className="h-12 w-auto" />
           </Link>
           
           {/* Desktop Navigation */}
