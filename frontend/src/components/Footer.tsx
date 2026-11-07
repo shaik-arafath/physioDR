@@ -55,8 +55,8 @@ export default function Footer() {
           <div>
             <h3 className="text-xl font-bold mb-4 text-primary-400">Opening Hours</h3>
             <ul className="space-y-2 text-gray-400">
-              <li>Mon - Sat: 10:00 AM - 8:00 PM</li>
-              <li>Sunday: Closed</li>
+              <li>Mon - Sat: 10:00 AM - 9:00 PM</li>
+              <li>Sunday: 10:00 AM - 1:00 PM</li>
               <li className="text-secondary-400 font-semibold">Best Pain Management in Nizampet</li>
             </ul>
           </div>
