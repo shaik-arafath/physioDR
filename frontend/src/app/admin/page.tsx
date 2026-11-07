@@ -8,6 +8,7 @@ export default function AdminPanel() {
   const [bookings, setBookings] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [promotionalImages, setPromotionalImages] = useState<string[]>([]);
+  const [filterStatus, setFilterStatus] = useState<string>("all");
 
   const tabs = [
     { id: "dashboard", label: "Dashboard", icon: Calendar },
@@ -145,12 +146,24 @@ export default function AdminPanel() {
 
           {activeTab === "bookings" && (
             <div>
-              <div className="flex justify-between items-center mb-6">
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
                 <h2 className="text-2xl font-bold">Bookings</h2>
-                <button onClick={fetchBookings} className="btn-primary flex items-center">
-                  <Plus className="w-5 h-5 mr-2" />
-                  Refresh
-                </button>
+                <div className="flex gap-2 w-full sm:w-auto">
+                  <select
+                    value={filterStatus}
+                    onChange={(e) => setFilterStatus(e.target.value)}
+                    className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500"
+                  >
+                    <option value="all">All Status</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Confirmed">Confirmed</option>
+                    <option value="Rejected">Rejected</option>
+                  </select>
+                  <button onClick={fetchBookings} className="btn-primary flex items-center">
+                    <Plus className="w-5 h-5 mr-2" />
+                    Refresh
+                  </button>
+                </div>
               </div>
               {loading ? (
                 <p className="text-gray-600">Loading bookings...</p>
@@ -169,7 +182,9 @@ export default function AdminPanel() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-200">
-                      {bookings.map((booking) => (
+                      {bookings
+                        .filter(booking => filterStatus === "all" || booking.status === filterStatus)
+                        .map((booking) => (
                         <tr key={booking.id}>
                           <td className="px-6 py-4 whitespace-nowrap">
                             <div>
@@ -192,26 +207,37 @@ export default function AdminPanel() {
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap">
                             {booking.status === "Pending" && (
-                              <>
+                              <div className="flex gap-2">
                                 <button
                                   onClick={() => updateBookingStatus(booking.id, "Confirmed")}
-                                  className="text-green-600 hover:text-green-900 mr-3"
+                                  className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-sm font-medium transition-colors flex items-center"
                                   title="Accept"
                                 >
-                                  <Check className="w-5 h-5" />
+                                  <Check className="w-4 h-4 mr-1" />
+                                  Accept
                                 </button>
                                 <button
                                   onClick={() => updateBookingStatus(booking.id, "Rejected")}
-                                  className="text-red-600 hover:text-red-900 mr-3"
+                                  className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg text-sm font-medium transition-colors flex items-center"
                                   title="Reject"
                                 >
-                                  <X className="w-5 h-5" />
+                                  <X className="w-4 h-4 mr-1" />
+                                  Reject
                                 </button>
-                              </>
+                              </div>
+                            )}
+                            {booking.status === "Confirmed" && (
+                              <button
+                                onClick={() => updateBookingStatus(booking.id, "Pending")}
+                                className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded-lg text-sm font-medium transition-colors"
+                                title="Mark as Pending"
+                              >
+                                Reset to Pending
+                              </button>
                             )}
                             <button
                               onClick={() => deleteBooking(booking.id)}
-                              className="text-red-600 hover:text-red-900"
+                              className="ml-2 text-red-600 hover:text-red-900"
                               title="Delete"
                             >
                               <Trash2 className="w-5 h-5" />
@@ -221,7 +247,7 @@ export default function AdminPanel() {
                       ))}
                     </tbody>
                   </table>
-                  {bookings.length === 0 && (
+                  {bookings.filter(booking => filterStatus === "all" || booking.status === filterStatus).length === 0 && (
                     <div className="p-6 text-center text-gray-500">No bookings found</div>
                   )}
                 </div>
